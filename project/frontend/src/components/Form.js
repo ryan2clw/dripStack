@@ -21,7 +21,11 @@ class Form extends Component {
       body: JSON.stringify(lead),
       headers: new Headers({ "Content-Type": "application/json" })
     };
-    fetch(this.props.endpoint, conf).then(response => console.log(response));
+    fetch(this.props.endpoint, conf)
+      .then(response => response.json())
+      .then(myJson => {
+        console.log(myJson);
+      });
   };
   render() {
     const { name, email, message } = this.state;
@@ -68,7 +72,10 @@ class Form extends Component {
             </div>
           </div>
           <div className="control">
-            <button type="submit" className="button is-info">
+            <button 
+              type="submit" 
+              className="button is-info" 
+              >
               Send message
             </button>
           </div>
